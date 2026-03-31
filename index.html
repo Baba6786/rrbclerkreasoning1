@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ExamPro • RRB Clerk Prelims 2026 - Reasoning Ability (1-40)</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:system-ui,sans-serif;background:#f1f5f9;color:#1e2937;}
+        .page{min-height:100vh;display:none;flex-direction:column;}
+        .active{display:flex;}
+
+        #login{background:linear-gradient(135deg,#1e40af,#3b82f6);align-items:center;justify-content:center;}
+        .login-box{background:white;width:92%;max-width:420px;border-radius:24px;padding:40px 30px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.25);}
+        .logo{font-size:48px;font-weight:900;color:#2563eb;margin-bottom:20px;}
+
+        #instructions{position:relative;}
+        .start-btn{position:fixed;bottom:0;left:0;right:0;background:#2563eb;color:white;padding:22px;font-size:22px;font-weight:700;text-align:center;border:none;cursor:pointer;box-shadow:0 -5px 20px rgba(37,99,235,0.4);z-index:100;}
+
+        header{background:white;padding:10px 15px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:100;}
+        .header-logo{font-size:24px;font-weight:800;color:#2563eb;}
+
+        #test{flex-direction:column;height:100vh;overflow:hidden;}
+        .palette{background:white;padding:10px;overflow-x:auto;white-space:nowrap;display:flex;gap:12px;border-bottom:1px solid #e2e8f0;flex-shrink:0;position:sticky;top:58px;z-index:90;}
+        .q-dot{width:40px;height:40px;border-radius:50%;background:#f1f5f9;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex-shrink:0;cursor:pointer;}
+        .q-dot.done{background:#22c55e;color:white;border-color:#22c55e;}
+        .q-dot.current{border-color:#2563eb;background:#dbeafe;}
+
+        .test-main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+        .question-area{flex:1;overflow-y:auto;padding:28px 20px;background:white;}
+        .direction{font-weight:700;font-size:1.15rem;margin-bottom:0.8rem;color:#1e2937;}
+        .para{font-weight:500;font-size:1.15rem;line-height:1.6;margin-bottom:1.6rem;color:#1e2937;}
+        .q-text{font-size:1.15rem;font-weight:600;margin-bottom:28px;line-height:1.45;}
+        .option{padding:18px 24px;margin-bottom:14px;border:2px solid #e2e8f0;border-radius:16px;font-size:1.15rem;cursor:pointer;transition:0.2s;}
+        .option:hover,.option.selected{border-color:#2563eb;background:#eff6ff;}
+        .bottom-nav{padding:16px 20px;background:white;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;flex-shrink:0;position:sticky;bottom:0;z-index:90;}
+    </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="page active">
+    <div class="login-box">
+        <div class="logo">ExamPro</div>
+        <h1 style="font-size:28px;margin:30px 0 20px;">RRB Clerk Prelims 2026<br>Reasoning Ability</h1>
+        <div style="text-align:left;margin-bottom:15px;">
+            <label style="font-size:14px;color:#64748b;">User ID</label>
+            <div style="padding:16px 20px;background:#f1f5f9;border-radius:12px;font-size:18px;font-weight:600;">1011011010</div>
+        </div>
+        <div style="text-align:left;">
+            <label style="font-size:14px;color:#64748b;">Password</label>
+            <input id="pass" type="password" placeholder="Enter Password" style="width:100%;padding:16px;border:2px solid #e2e8f0;border-radius:12px;font-size:18px;">
+        </div>
+        <button onclick="login()" style="margin-top:30px;width:100%;padding:18px;background:#2563eb;color:white;border:none;border-radius:16px;font-size:20px;font-weight:700;">Login</button>
+    </div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div id="instructions" class="page">
+    <div style="max-width:800px;margin:40px auto;padding:20px;text-align:center;">
+        <div style="font-size:42px;font-weight:900;color:#2563eb;margin-bottom:20px;">ExamPro</div>
+        <h1 style="font-size:32px;margin-bottom:10px;">RRB Clerk Prelims 2026<br>Reasoning Ability</h1>
+        <p style="color:#64748b;font-size:20px;">25 Minutes • 40 Questions • 1 Mark each</p>
+        <div style="margin:60px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
+            <div style="background:white;padding:30px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);">⏰<br><b style="font-size:32px;">25 Min</b><br>Duration</div>
+            <div style="background:white;padding:30px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);">📋<br><b style="font-size:32px;">40</b><br>Questions</div>
+            <div style="background:white;padding:30px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);">−0.25<br><b style="font-size:32px;">Negative</b><br>Marking</div>
+        </div>
+    </div>
+    <button class="start-btn" onclick="startTest()">Start Test Now →</button>
+</div>
+
+<!-- TEST PAGE -->
+<div id="test" class="page">
+    <header>
+        <div class="header-logo">RRB Clerk 2026 Reasoning</div>
+        <div id="timer" style="font-size:20px;font-weight:700;font-family:monospace;color:#1e2937;padding: 10px;">24:59</div>
+        <button onclick="submitTest()" style="background:#ef4444;color:white;padding:10px 30px;border:none;border-radius:12px;font-weight:700;cursor:pointer;">Submit</button>
+    </header>
+    <div class="palette" id="palette"></div>
+    <div class="test-main">
+        <div class="question-area" id="question-area"></div>
+        <div class="bottom-nav">
+            <button onclick="prevQ()" style="padding:14px 40px;border:2px solid #cbd5e1;background:white;border-radius:16px;font-weight:600;font-size:14px;">← Previous</button>
+            <button onclick="nextQ()" style="padding:14px 50px;background:#2563eb;color:white;border:none;border-radius:16px;font-weight:600;font-size:14px;">Next →</button>
+        </div>
+    </div>
+</div>
+
+<!-- SCORE PAGE -->
+<div id="score" class="page" style="background:#f8fafc; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:white; max-width:480px; width:100%; border-radius:24px; padding:40px 30px; box-shadow:0 20px 60px rgba(0,0,0,0.1); text-align:center;">
+        <h1 style="font-size:28px; color:#1e2937; margin-bottom:10px;">Test Completed!</h1>
+        <p style="color:#64748b; margin-bottom:30px;">RRB Clerk Prelims 2026 - Reasoning Ability</p>
+        
+        <div style="margin:30px 0; padding:30px; background:#f1f5f9; border-radius:20px;">
+            <div style="font-size:14px; color:#64748b; margin-bottom:8px;">Your Score</div>
+            <div id="score-main" style="font-size:52px; font-weight:900; color:#2563eb; line-height:1;">0.00</div>
+            <div style="font-size:15px; color:#64748b;">out of 40</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:30px 0;">
+            <div style="background:#f1f5f9; padding:20px; border-radius:16px;">
+                <div style="color:#22c55e; font-size:28px; font-weight:700;" id="correct">0</div>
+                <div style="font-size:14px; color:#64748b;">Correct</div>
+            </div>
+            <div style="background:#f1f5f9; padding:20px; border-radius:16px;">
+                <div style="color:#ef4444; font-size:28px; font-weight:700;" id="wrong">0</div>
+                <div style="font-size:14px; color:#64748b;">Wrong</div>
+            </div>
+        </div>
+
+        <div style="margin:30px 0;">
+            <div style="font-size:14px; color:#64748b; margin-bottom:10px;">Accuracy</div>
+            <div style="position:relative; width:180px; height:180px; margin:0 auto;">
+                <svg width="180" height="180" style="transform:rotate(-90deg);">
+                    <circle cx="90" cy="90" r="82" fill="none" stroke="#e2e8f0" stroke-width="16"></circle>
+                    <circle id="pie" cx="90" cy="90" r="82" fill="none" 
+                            stroke="#2563eb" stroke-width="16"
+                            stroke-dasharray="515" stroke-dashoffset="515"
+                            stroke-linecap="round"></circle>
+                </svg>
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+                    <div id="accuracy" style="font-size:32px; font-weight:700; color:#1e2937;">0</div>
+                    <div style="font-size:14px; color:#64748b;">%</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:15px; margin-top:40px;">
+            <button onclick="showAnalysis()" 
+                    style="flex:1; padding:16px; background:#2563eb; color:white; border:none; border-radius:16px; font-weight:700; font-size:17px; cursor:pointer;">
+                View Detailed Analysis
+            </button>
+            <button onclick="restart()" 
+                    style="flex:1; padding:16px; background:white; color:#1e2937; border:2px solid #cbd5e1; border-radius:16px; font-weight:700; font-size:17px; cursor:pointer;">
+                Restart Test
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ANALYSIS PAGE -->
+<div id="analysis" class="page" style="flex-direction:column;">
+    <header style="background:white; padding:15px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e2e8f0; position:sticky; top:0; z-index:100;">
+        <div style="font-weight:700; color:#2563eb;">Detailed Analysis</div>
+        <button onclick="backToScore()" style="background:#ef4444; color:white; border:none; padding:8px 20px; border-radius:12px; cursor:pointer;">Back to Score</button>
+    </header>
+    <div id="analysis-content" style="flex:1; overflow-y:auto; padding:20px; background:#f8fafc;"></div>
+</div>
+
+<script>
+// FULL 40 QUESTIONS
+const questions = [
+    {direction:"Directions (1-5): Study the following information carefully and answer the questions given below.",para:"Seven persons A, B, C, D, E, F and G are living in a seven storey building but not necessarily in the same order. The bottommost floor is numbered as 1 and the floor immediately above is numbered as 2 and so on. <br>Less than three persons live above E. Only two persons live between E and D. As many persons live above D as below B. A lives immediately below G. C lives below A.",q:"Q1. Who among the following person lives three floors above G?",opt:["(a) E","(b) C","(c) B","(d) F","(e) None of these"],ans:3,exp:"F lives three floors above G."},
+    {direction:"Directions (1-5): Study the following information carefully and answer the questions given below.",para:"Seven persons A, B, C, D, E, F and G are living in a seven storey building but not necessarily in the same order. The bottommost floor is numbered as 1 and the floor immediately above is numbered as 2 and so on. <br>Less than three persons live above E. Only two persons live between E and D. As many persons live above D as below B. A lives immediately below G. C lives below A.",q:"Q2. Which of the following statements is/are true with respect to the final arrangement?",opt:["(a) F lives two floors above E","(b) Only three persons live between G and C","(c) D lives immediately above B","(d) All are true","(e) None of these"],ans:0,exp:"Only statement A is true."},
+    {direction:"Directions (1-5): Study the following information carefully and answer the questions given below.",para:"Seven persons A, B, C, D, E, F and G are living in a seven storey building but not necessarily in the same order. The bottommost floor is numbered as 1 and the floor immediately above is numbered as 2 and so on. <br>Less than three persons live above E. Only two persons live between E and D. As many persons live above D as below B. A lives immediately below G. C lives below A.",q:"Q3. Four of the following five are alike in a certain way as per the given arrangement and hence form a group. Find the one who doesn’t belong to that group.",opt:["(a) A","(b) D","(c) C","(d) E","(e) F"],ans:2,exp:"C does not belong to the group."},
+    {direction:"Directions (1-5): Study the following information carefully and answer the questions given below.",para:"Seven persons A, B, C, D, E, F and G are living in a seven storey building but not necessarily in the same order. The bottommost floor is numbered as 1 and the floor immediately above is numbered as 2 and so on. <br>Less than three persons live above E. Only two persons live between E and D. As many persons live above D as below B. A lives immediately below G. C lives below A.",q:"Q4. How many persons live between B and C?",opt:["(a) Two","(b) Five","(c) Four","(d) Three","(e) None of these"],ans:2,exp:"Four persons live between B and C."},
+    {direction:"Directions (1-5): Study the following information carefully and answer the questions given below.",para:"Seven persons A, B, C, D, E, F and G are living in a seven storey building but not necessarily in the same order. The bottommost floor is numbered as 1 and the floor immediately above is numbered as 2 and so on. <br>Less than three persons live above E. Only two persons live between E and D. As many persons live above D as below B. A lives immediately below G. C lives below A.",q:"Q5. Who among the following person lives immediately above E?",opt:["(a) C","(b) F","(c) G","(d) B","(e) None of these"],ans:3,exp:"B lives immediately above E."},
+
+    {direction:"Directions (6-8): Study the following information carefully and answer the questions given below.",para:"J is the father of only X and Y. Z is the wife of Y and daughter of C. B is the grandson of J. B has only one aunt.",q:"Q6. How is C related to B?",opt:["(a) Grandson","(b) Grandmother","(c) Grandfather","(d) Granddaughter","(e) Either b or c"],ans:4,exp:"Either Grandmother or Grandfather."},
+    {direction:"Directions (6-8): Study the following information carefully and answer the questions given below.",para:"J is the father of only X and Y. Z is the wife of Y and daughter of C. B is the grandson of J. B has only one aunt.",q:"Q7. How is Z related to X?",opt:["(a) Brother-in-law","(b) Cousin Sister","(c) Maternal aunt","(d) Sister-in-law","(e) Cannot be determined"],ans:3,exp:"Sister-in-law."},
+    {direction:"Directions (6-8): Study the following information carefully and answer the questions given below.",para:"J is the father of only X and Y. Z is the wife of Y and daughter of C. B is the grandson of J. B has only one aunt.",q:"Q8. If E is the aunt of X, then how is E related to J?",opt:["(a) Sister","(b) Mother","(c) Son","(d) Sister-in-law","(e) Cannot be determined"],ans:4,exp:"Cannot be determined."},
+
+    {direction:"",para:"",q:"Q9. If in the word <b>\"QUALITY\"</b> all the vowels are changed to the immediate previous letter and all the consonants are changed to the immediate next letter as per the English alphabetical series, then which of the following letter is fourth from the left end?",opt:["(a) H","(b) U","(c) Z","(d) M","(e) R"],ans:3,exp:"M is fourth from the left end."},
+    {direction:"",para:"",q:"Q10. How many such pairs of digits are there in the number <b>\"95426313\"</b> each of which has as many digits between them as there are in the number series (both forward and backward)?",opt:["(a) One","(b) Two","(c) Three","(d) More than three","(e) None"],ans:2,exp:"Three such pairs."},
+
+    {direction:"Directions (11-15): Read both the conclusions and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.",para:"",q:"Q11. <b>Statements:</b><br>Only a few masks are sanitizer<br>Some sanitizers are Vaccine<br>All Vaccine are tablets<br><br><b>Conclusions:</b><br>I. Some sanitizers are tablets<br>II. No vaccine is Mask",opt:["(a) Only conclusion I follows","(b) Either conclusion I or II follows","(c) Both conclusions I and II follow","(d) Only conclusion II follows","(e) Neither conclusion I nor II follows"],ans:0,exp:"Only conclusion I follows."},
+    {direction:"Directions (11-15): Read both the conclusions and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.",para:"",q:"Q12. <b>Statements:</b><br>All invasions are seizure<br>Only a few seizures are ride<br>No ride is attack<br><br><b>Conclusions:</b><br>I. All attacks can be invasions<br>II. All seizures can never be attack",opt:["(a) Only conclusion I follows","(b) Either conclusion I or II follows","(c) Both conclusions I and II follow","(d) Only conclusion II follows","(e) Neither conclusion I nor II follows"],ans:2,exp:"Both conclusions I and II follow."},
+    {direction:"Directions (11-15): Read both the conclusions and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.",para:"",q:"Q13. <b>Statements:</b><br>Only a few Drums are Cello<br>All Cello are Banjo<br>No Banjo is Guitar<br><br><b>Conclusions:</b><br>I. Some Cello can be Guitar<br>II. Some Banjo are Drums",opt:["(a) Only conclusion I follows","(b) Either conclusion I or II follows","(c) Both conclusions I and II follow","(d) Only conclusion II follows","(e) Neither conclusion I nor II follows"],ans:3,exp:"Only conclusion II follows."},
+    {direction:"Directions (11-15): Read both the conclusions and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.",para:"",q:"Q14. <b>Statements:</b><br>Some mouse is keyboard<br>All keyboards are laptops<br>Only a few laptops are CPU<br><br><b>Conclusions:</b><br>I. All keyboards can be CPU<br>II. Some mouse is laptops",opt:["(a) Only conclusion I follows","(b) Either conclusion I or II follows","(c) Both conclusions I and II follow","(d) Only conclusion II follows","(e) Neither conclusion I nor II follows"],ans:2,exp:"Both conclusions I and II follow."},
+    {direction:"Directions (11-15): Read both the conclusions and then decide which of the given conclusions logically follows from the given statements disregarding the commonly known facts.",para:"",q:"Q15. <b>Statements:</b><br>Few channels are commercial<br>No Sports is channel<br>Every commercial is entertainment<br><br><b>Conclusions:</b><br>I. Few channels are entertainment<br>II. No entertainment is sport",opt:["(a) Only conclusion I follows","(b) Either conclusion I or II follows","(c) Both conclusions I and II follow","(d) Only conclusion II follows","(e) Neither conclusion I nor II follows"],ans:0,exp:"Only conclusion I follows."},
+
+    {direction:"Directions (16-20): Study the following information carefully and answer the questions given below.",para:"Six persons A, B, C, Q, R and S were born on two different dates viz., 11 and 22 of three different months viz., September, October and November but not necessarily in the same order. <br>C was born in the month having an odd number of days. Only two persons were born between C and R. As many persons born before R as after A. B was born immediately before S. Q was not born on an even numbered date.",q:"Q16. S was born on which of the following day?",opt:["(a) October 22","(b) October 11","(c) September 11","(d) November 11","(e) None of these"],ans:1,exp:"October 11."},
+    {direction:"Directions (16-20): Study the following information carefully and answer the questions given below.",para:"Six persons A, B, C, Q, R and S were born on two different dates viz., 11 and 22 of three different months viz., September, October and November but not necessarily in the same order. <br>C was born in the month having an odd number of days. Only two persons were born between C and R. As many persons born before R as after A. B was born immediately before S. Q was not born on an even numbered date.",q:"Q17. Four of the following five are alike in a certain way as per the given arrangement and hence form a group. Find the one that doesn’t belong to that group.",opt:["(a) Q-A","(b) R-B","(c) B-S","(d) C-Q","(e) R-S"],ans:4,exp:"R-S does not belong."},
+    {direction:"Directions (16-20): Study the following information carefully and answer the questions given below.",para:"Six persons A, B, C, Q, R and S were born on two different dates viz., 11 and 22 of three different months viz., September, October and November but not necessarily in the same order. <br>C was born in the month having an odd number of days. Only two persons were born between C and R. As many persons born before R as after A. B was born immediately before S. Q was not born on an even numbered date.",q:"Q18. How many persons were born between R and Q?",opt:["(a) Three","(b) Two","(c) Four","(d) One","(e) None of these"],ans:0,exp:"Three persons."},
+    {direction:"Directions (16-20): Study the following information carefully and answer the questions given below.",para:"Six persons A, B, C, Q, R and S were born on two different dates viz., 11 and 22 of three different months viz., September, October and November but not necessarily in the same order. <br>C was born in the month having an odd number of days. Only two persons were born between C and R. As many persons born before R as after A. B was born immediately before S. Q was not born on an even numbered date.",q:"Q19. Which of the following statements is/are true with respect to the final arrangement?",opt:["(a) S was born after Q","(b) B was born two persons before C","(c) Only four persons were born between A and B","(d) All are true","(e) None of these"],ans:1,exp:"Only statement B is true."},
+    {direction:"Directions (16-20): Study the following information carefully and answer the questions given below.",para:"Six persons A, B, C, Q, R and S were born on two different dates viz., 11 and 22 of three different months viz., September, October and November but not necessarily in the same order. <br>C was born in the month having an odd number of days. Only two persons were born between C and R. As many persons born before R as after A. B was born immediately before S. Q was not born on an even numbered date.",q:"Q20. Who among the following person was born immediately after S?",opt:["(a) R","(b) B","(c) C","(d) Q","(e) None of these"],ans:2,exp:"C was born immediately after S."},
+
+    {direction:"Directions (21-25): Study the following information carefully and answer the questions given below.",para:"<b> A @ $ Z 5 6 E 7 ! © K 5 + L 9 0 * G 3 U % P J £ D H % </b>",q:"Q21. What is the sum of the numbers which are between I and * in the given series?",opt:["(a) 10","(b) 14","(c) 13","(d) 12","(e) 15"],ans:1,exp:"14."},
+    {direction:"Directions (21-25): Study the following information carefully and answer the questions given below.",para:"<b> A @ $ Z 5 6 E 7 ! © K 5 + L 9 0 * G 3 U % P J £ D H % </b>",q:"Q22. How many vowels are immediately followed by a symbol in the given series?",opt:["(a) One","(b) Two","(c) Three","(d) Four","(e) None"],ans:2,exp:"Three vowels."},
+    {direction:"Directions (21-25): Study the following information carefully and answer the questions given below.",para:"<b> A @ $ Z 5 6 E 7 ! © K 5 + L 9 0 * G 3 U % P J £ D H % </b>",q:"Q23. Four of the following five are alike in a certain way as per the given arrangement and hence form a group. Find the one that doesn’t belong to that group.",opt:["(a) AZ","(b) 6!","(c) +O","(d) KL","(e) %H"],ans:4,exp:"%H does not belong."},
+    {direction:"Directions (21-25): Study the following information carefully and answer the questions given below.",para:"<b> A @ $ Z 5 6 E 7 ! © K 5 + L 9 0 * G 3 U % P J £ D H % </b>",q:"Q24. How many consonants are there which are immediately preceded by a consonant and immediately followed by a symbol?",opt:["(a) One","(b) Two","(c) Three","(d) Four","(e) None"],ans:1,exp:"Two consonants."},
+    {direction:"Directions (21-25): Study the following information carefully and answer the questions given below.",para:"<b> A @ $ Z 5 6 E 7 ! © K 5 + L 9 0 * G 3 U % P J £ D H % </b>",q:"Q25. Which of the following element is tenth to the right of the ninth element from the left end?",opt:["(a) A","(b) *","(c) 3","(d) U","(e) None of these"],ans:2,exp:"3 is the required element."},
+
+    {direction:"Directions (26-30): In these questions, the relationship between different elements is shown in the statements. The statements are followed by two conclusions. Choose the conclusion(s) which is/are definitely true.",para:"",q:"Q26. <b>Statements:</b><br>R = P ≥ U > T ≤ O < Q ≤ X<br><br><b>Conclusions</b>:<br>I. X > T<br>II. T ≤ X",opt:["(a) Only conclusion I is true","(b) Only conclusion II is true","(c) Both conclusions I and II are true","(d) Either conclusion I or II is true","(e) Neither conclusion I nor II is true"],ans:0,exp:"Only conclusion I is true."},
+    {direction:"Directions (26-30): In these questions, the relationship between different elements is shown in the statements. The statements are followed by two conclusions. Choose the conclusion(s) which is/are definitely true.",para:"",q:"Q27. <b>Statements:</b><br>P > R ≤ S = T < Q ≥ W > Y ≥ X<br><br><b>Conclusions:</b><br>I. R < W<br>II. T > X",opt:["(a) Only conclusion I is true","(b) Only conclusion II is true","(c) Both conclusions I and II are true","(d) Either conclusion I or II is true","(e) Neither conclusion I nor II is true"],ans:4,exp:"Neither conclusion follows."},
+    {direction:"Directions (26-30): In these questions, the relationship between different elements is shown in the statements. The statements are followed by two conclusions. Choose the conclusion(s) which is/are definitely true.",para:"",q:"Q28. <b>Statements:</b><br>M ≤ R < O ≤ D ≤ G = J ≥ K<br><br><b>Conclusions:</b><br>I. M ≤ G<br>II. O ≥ K",opt:["(a) Only conclusion I is true","(b) Only conclusion II is true","(c) Both conclusions I and II are true","(d) Either conclusion I or II is true","(e) Neither conclusion I nor II is true"],ans:4,exp:"Neither conclusion follows."},
+    {direction:"Directions (26-30): In these questions, the relationship between different elements is shown in the statements. The statements are followed by two conclusions. Choose the conclusion(s) which is/are definitely true.",para:"",q:"Q29. <b>Statements:</b><br>Z ≥ E < F ≤ O ≥ K > M ≥ L<br><br><b>Conclusions:</b><br>I. L < O<br>II. Z > M",opt:["(a) Only conclusion I is true","(b) Only conclusion II is true","(c) Either conclusion I or II is true","(d) Both conclusions I and II are true","(e) Neither conclusion I nor II is true"],ans:0,exp:"Only conclusion I is true."},
+    {direction:"Directions (26-30): In these questions, the relationship between different elements is shown in the statements. The statements are followed by two conclusions. Choose the conclusion(s) which is/are definitely true.",para:"",q:"Q30. <b>Statements:</b><br>P ≥ Q = R ≤ S ≤ T < W ≥ X<br><br><b>Conclusions:</b><br>I) T > Q<br>II) T = Q",opt:["(a) Only conclusion I is true","(b) Only conclusion II is true","(c) Either conclusion I or II is true","(d) Both conclusions I and II are true","(e) Neither conclusion I nor II is true"],ans:2,exp:"Either conclusion I or II is true."},
+
+    {direction:"Directions (31-35): Study the following information carefully and answer the questions given below.",para:"Seven persons M, N, O, P, R, S and T are sitting around a circular table such that all of them are facing towards the centre, but not necessarily in the same order.<br> Only one person sits between P and M. T sits second to the right of P. N sits immediate right of T. R sits third to the right of O.",q:"Q31. Who among the following person sits second to the right of S?",opt:["(a) T","(b) N","(c) O","(d) P","(e) M"],ans:2,exp:"O sits second to the right of S."},
+    {direction:"Directions (31-35): Study the following information carefully and answer the questions given below.",para:"Seven persons M, N, O, P, R, S and T are sitting around a circular table such that all of them are facing towards the centre, but not necessarily in the same order.<br> Only one person sits between P and M. T sits second to the right of P. N sits immediate right of T. R sits third to the right of O.",q:"Q32. Who among the following person sits adjacent to R?",opt:["(a) M","(b) N","(c) T","(d) P","(e) Both a and b"],ans:4,exp:"Both M and N."},
+    {direction:"Directions (31-35): Study the following information carefully and answer the questions given below.",para:"Seven persons M, N, O, P, R, S and T are sitting around a circular table such that all of them are facing towards the centre, but not necessarily in the same order.<br> Only one person sits between P and M. T sits second to the right of P. N sits immediate right of T. R sits third to the right of O.",q:"Q33. What is the position of P with respect to R?",opt:["(a) Second to the right","(b) Third to the right","(c) Immediate right","(d) Immediate left","(e) Fourth to the right"],ans:1,exp:"Third to the right."},
+    {direction:"Directions (31-35): Study the following information carefully and answer the questions given below.",para:"Seven persons M, N, O, P, R, S and T are sitting around a circular table such that all of them are facing towards the centre, but not necessarily in the same order.<br> Only one person sits between P and M. T sits second to the right of P. N sits immediate right of T. R sits third to the right of O.",q:"Q34. If N is related to T and M is related to R, then who among the following person is related to O?",opt:["(a) T","(b) N","(c) M","(d) S","(e) O"],ans:0,exp:"T is related to O."},
+    {direction:"Directions (31-35): Study the following information carefully and answer the questions given below.",para:"Seven persons M, N, O, P, R, S and T are sitting around a circular table such that all of them are facing towards the centre, but not necessarily in the same order.<br> Only one person sits between P and M. T sits second to the right of P. N sits immediate right of T. R sits third to the right of O.",q:"Q35. If all the persons are made to sit in the alphabetical order in a clockwise direction with respect to M, then how many persons remain unchanged in their position (excluding M)?",opt:["(a) One","(b) Two","(c) Three","(d) More than three","(e) No one"],ans:4,exp:"No one remains unchanged."},
+
+    {direction:"Directions (36-39): Study the following information carefully and answer the questions given below.",para:"<b>SIN ICY XOS AOW KLY</b>",q:"Q36. If the first letter in each word is replaced by “L”, then how many 3-letter meaningful words can be formed?",opt:["(a) One","(b) Two","(c) Three","(d) More than three","(e) None"],ans:0,exp:"One meaningful word."},
+    {direction:"Directions (36-39): Study the following information carefully and answer the questions given below.",para:"<b>SIN ICY XOS AOW KLY</b>",q:"Q37. If only the first and second letter of each word is changed to the immediate next letter as per the English alphabetical series, then how many words thus formed will have vowel?",opt:["(a) One","(b) Two","(c) Three","(d) More than three","(e) None"],ans:4,exp:"None."},
+    {direction:"Directions (36-39): Study the following information carefully and answer the questions given below.",para:"<b>SIN ICY XOS AOW KLY</b>",q:"Q38. If all the words are arranged in the dictionary order from the left end, then which of the following word is fourth from the right end?",opt:["(a) SIN","(b) AOW","(c) ICY","(d) XOS","(e) None of these"],ans:2,exp:"ICY is fourth from the right end."},
+    {direction:"Directions (36-39): Study the following information carefully and answer the questions given below.",para:"<b>SIN ICY XOS AOW KLY</b>",q:"Q39. If the first and the third letters of each word are interchanged, then how many new words thus formed end with a vowel?",opt:["(a) One","(b) Two","(c) Three","(d) More than three","(e) None"],ans:1,exp:"Two words."},
+
+    {direction:"",para:"",q:"Q40. If in the number <b>57935861426</b>, the digits at the odd position (from the left end) are dropped, then which of the following digit is second from the right end?",opt:["(a) 1","(b) 8","(c) 2","(d) 3","(e) 7"],ans:0,exp:"1 is second from the right end."}
+];
+
+let current = 0;
+let answers = {};
+let timeLeft = 1500; // 25 minutes
+let timerId;
+const totalQ = questions.length;
+
+function login() {
+    if (document.getElementById('pass').value === "19991010") {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('instructions').classList.add('active');
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) elem.requestFullscreen().catch(()=>{});
+        else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+        else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
+    } else {
+        alert("Wrong Password! Hint: 19991010");
+    }
+}
+
+function startTest() {
+    document.getElementById('instructions').classList.remove('active');
+    document.getElementById('test').classList.add('active');
+    current = 0; 
+    answers = {}; 
+    timeLeft = 1500;
+    renderPalette();
+    loadQuestion();
+    startTimer();
+}
+
+function startTimer() {
+    clearInterval(timerId);
+    timerId = setInterval(() => {
+        timeLeft--;
+        let m = Math.floor(timeLeft / 60);
+        let s = timeLeft % 60;
+        document.getElementById('timer').textContent = `${m}:${s<10?'0':''}${s}`;
+        if (timeLeft <= 300) document.getElementById('timer').style.color = '#ef4444';
+        if (timeLeft <= 0) submitTest();
+    }, 1000);
+}
+
+function renderPalette() {
+    const pal = document.getElementById('palette');
+    pal.innerHTML = '';
+    for (let i = 0; i < totalQ; i++) {
+        let d = document.createElement('div');
+        d.className = 'q-dot';
+        d.textContent = (i+1);
+        d.onclick = () => { current = i; loadQuestion(); };
+        pal.appendChild(d);
+    }
+}
+
+function loadQuestion() {
+    const q = questions[current];
+    const area = document.getElementById('question-area');
+    let html = '';
+    if (q.direction) html += `<div class="direction">${q.direction}</div>`;
+    if (q.para) html += `<div class="para">${q.para}</div>`;
+    html += `<div class="q-text">${q.q}</div><div id="options"></div>`;
+    area.innerHTML = html;
+
+    const opts = document.getElementById('options');
+    q.opt.forEach((text, i) => {
+        let div = document.createElement('div');
+        div.className = 'option';
+        div.innerHTML = `<span style="font-weight:700;margin-right:16px;">${String.fromCharCode(65+i)}</span>${text}`;
+        div.onclick = () => {
+            if (answers[current] === i) delete answers[current];
+            else answers[current] = i;
+            loadQuestion();
+            updatePalette();
+        };
+        if (answers[current] === i) div.classList.add('selected');
+        opts.appendChild(div);
+    });
+
+    updatePalette();
+}
+
+function updatePalette() {
+    document.querySelectorAll('.q-dot').forEach((dot, i) => {
+        dot.classList.remove('done', 'current');
+        if (answers[i] !== undefined) dot.classList.add('done');
+        if (i === current) dot.classList.add('current');
+    });
+}
+
+function nextQ() { 
+    current = (current + 1) % totalQ; 
+    loadQuestion(); 
+}
+
+function prevQ() { 
+    current = (current - 1 + totalQ) % totalQ; 
+    loadQuestion(); 
+}
+
+function submitTest() {
+    clearInterval(timerId);
+    
+    let correct = 0, wrong = 0;
+    questions.forEach((q, i) => {
+        if (answers[i] === q.ans) correct++;
+        else if (answers[i] !== undefined) wrong++;
+    });
+
+    const rawScore = correct - (wrong * 0.25);
+    const accuracy = (correct + wrong) > 0 ? Math.round((correct / (correct + wrong)) * 100) : 0;
+
+    // Update score safely
+    document.getElementById('score-main').textContent = rawScore.toFixed(2);
+    document.getElementById('accuracy').textContent = accuracy;
+    document.getElementById('correct').textContent = correct;
+    document.getElementById('wrong').textContent = wrong;
+    
+    // Update pie chart
+    const pie = document.getElementById('pie');
+    if (pie) pie.style.strokeDashoffset = 515 - (515 * accuracy / 100);
+
+    document.getElementById('test').classList.remove('active');
+    document.getElementById('score').classList.add('active');
+}
+
+function showAnalysis() {
+    document.getElementById('score').classList.remove('active');
+    document.getElementById('analysis').classList.add('active');
+    
+    let html = '';
+    questions.forEach((q, i) => {
+        let userAns = answers[i];
+        let status = userAns === q.ans ? '<span style="color:#22c55e;font-weight:700;">✓ Correct</span>' :
+                     (userAns !== undefined ? '<span style="color:#ef4444;font-weight:700;">✗ Wrong</span>' : '<span style="color:#ca8a04;">Not attempted</span>');
+        
+        html += `
+        <div style="margin-bottom:40px;padding-bottom:25px;border-bottom:1px solid #e2e8f0;">
+            ${q.direction ? `<div class="direction">${q.direction}</div>` : ''}
+            ${q.para ? `<div class="para">${q.para}</div>` : ''}
+            <div style="font-size:1.25rem;margin-bottom:16px;"><strong>Q${i+1}.</strong> ${q.q}</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px;">
+                ${q.opt.map((o,idx) => `
+                    <div style="padding:15px;border-radius:12px;background:${idx===q.ans?'#bbf7d0':(idx===userAns?'#fecaca':'#f1f5f9')}">
+                        ${String.fromCharCode(65+idx)}. ${o}
+                    </div>
+                `).join('')}
+            </div>
+            <div style="font-size:1rem;margin-top:10px;">${status}</div>
+            <div style="margin-top:12px;color:#4b5563;">Explanation: ${q.exp}</div>
+        </div>`;
+    });
+    document.getElementById('analysis-content').innerHTML = html;
+}
+
+function backToScore() {
+    document.getElementById('analysis').classList.remove('active');
+    document.getElementById('score').classList.add('active');
+}
+
+function restart() { 
+    location.reload(); 
+}
+</script>
+</body>
+</html>
